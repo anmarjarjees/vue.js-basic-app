@@ -1,2 +1,51 @@
 # vue.js-basic-app
 Quick Vue Application for understanding the fundamentals
+
+# Folder Structure:
+- img folder for containing the products images
+- css folder for the styles
+- js folder for coding our application
+
+Importing the view inside the index.html file:
+```
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+```
+
+## NOTE:
+To copy the CDN link, use this link ["Using Vue from CDN"](https://vuejs.org/guide/quick-start.html#using-vue-from-cdn)
+
+# Create Vue Application
+- Creating the vue app with "Vue.createApp({ })" and passing an object {}
+- "app" will be the instance for our Vue application that powers everything
+- Adding the "data()" option that returns data 
+
+```
+const app = Vue.createApp({
+
+});
+```
+Vue is "Reactive", it has a "Reactivity System". Changing the value of any item inside data() will automatically update it in the html page. 
+
+You can read more about ["Vue 3 Reactivity"](https://vuejs.org/guide/extras/reactivity-in-depth.html). Or check the ["Reactivity Fundamentals"](https://vuejs.org/guide/essentials/reactivity-fundamentals.html)
+
+# Browser Dev Tools:
+In the Console window (TAB), if you type mountedApp.anyDataValue='any value', this will update the product
+
+# Code Sequence:
+- Part1: Intro - Adding contents
+- Part2: V-Bind
+- Part3: Conditional Rendering
+- Part4: List Rendering
+- Part5: Event Handling
+- Part6: Class & Style Binding
+### *NOTE: The other parts to be added later... Stay tuned :-)*
+
+# References, Resources, and Credits: 
+- [Vue Guide](https://vuejs.org/guide/introduction.html)
+- [Vue Tutorial](https://vuejs.org/tutorial/#step-1)
+- [Vue Quick Start](https://vuejs.org/guide/quick-start.html)
+- [Getting started with Vue](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/)
+- [Vue Mastery Youtube Channel](https://www.youtube.com/c/VueMastery/about)
+
+
+

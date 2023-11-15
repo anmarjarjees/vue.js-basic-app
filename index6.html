@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Vue.js Framework</h1>
+            <h2>Vue Demo Application</h2>
+        </header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </nav>
+
+        <main id="app" class="main-content">
+            <!-- Writing JS expression with {{ }} -->
+            <h1>{{ product }}</h1>
+            <section class="card">
+                <div>
+                    <!-- 
+                        Final Task:
+                        make the image grayed-out (lighter/little transparent)
+                        when the item is out of stock:
+                        
+                        Solution:
+                        Applying conditional class as we did before:
+                     -->
+                    <img :src="image" alt="Casio Piano" class="img-centre" :class="{ 'grayed-out-img': !inStock}">
+                </div>
+                <p>{{ product }} {{ description }}. To learn more visit <a :href="url" target="_blank">"Casio Privia
+                        PX-S7000"</a> Official page!</p>
+
+                <div class="product-status">
+                    <p>
+                        Item Status:
+                        <span v-if="inStock">In Stock</span>
+                        <span v-else>Out of Stock</span>
+                    </p>
+
+                    <p v-show="inStock">
+                        The item is available for pickup from our main store or shipped for free to any
+                        address!
+                    </p>
+
+                    <p v-if="inventory > 10">We have the three colors in our stock!</p>
+                    <p v-else-if="inventory <=10 && inventory > 0">Hurry up, this item is almost sold out!</p>
+                    <p v-else>Out of Stock</p>
+
+                    <!-- combine two boolean properties -->
+                    <p v-if="inventory>0 && onSale">This item is currently on sale! Don't miss your chance</p>
+
+                    <!-- Adding a list -->
+                    <h3>Explore the following...</h3>
+                    <ul>
+                        <li v-for="category in categories">{{ category }}</li>
+                    </ul>
+
+                    <!-- 
+                        Adding :style attribute
+                        refer to the "styles" object within the data
+                     -->
+
+                    <h3 :style="styles">Available Colors</h3>
+                    <!-- 
+                        @mouseover event to change image: different color
+
+                        Modifications:
+                        Instead of displaying the color name,
+                        display the color itself by using "Style Binding"
+                        displaying the color in circular shape using class "color-circle"
+
+                        1. Adding the :style attribute
+                        2. Bounding a style object to it
+                        3. Adding the CSS property "backgroundColor" to the style object
+                        IMPORTANT NOTES: 
+                        > using camelCase JS syntax "backgroundColor" instead of CSS syntax "background-color" as we did with JavaScript DOM lectures :-)
+                        > or we can use kebab-case within quotes => 'background-color': option.color
+                        4. using the same iteration variable "option" to access the color name/value
+                        5. backgroundColor property will render the color name to a color
+                        style="background-color: white"
+                    -->
+                    <div v-for="option in options" :key="option.id" @mouseover="updateImage(option.image)"
+                        class="color-circle" :style="{ backgroundColor: option.color }">
+                        <!-- Color: {{ option.color }} -->
+                    </div>
+                </div>
+
+                <div class="cart">
+                    Cart({{ cart }})
+                </div>
+
+                <div class="buttons">
+                    <!-- 
+                        Problem#1: 
+                        When setting the boolean property "inStock" to be false,
+                        which means no item(s) available to buy => this button should be disabled!
+                        
+                        Solution:
+                        adding the Vue Bind ":disabled" attribute when out product is not in stock
+                        so disable the button "Add to Cart" when the boolean property "inStock" is set to "false"
+                        > :disabled="!inStock"
+
+                        NOTE:
+                        !inStock => means when the value is "false" (not invert the value!)
+
+                        Problem#2: 
+                        When the button is "disabled", user can still hover the mouse and it will highlight the button!
+                        we need to dim the button and remove the feature for highlighting in hovering if it's disabled!
+
+                        Solution:
+                        Using "Class Binding" to add/apply our custom class "disabled-btn" when disabled attribute is true
+                        Class Binding helps us to conditionally add/remove the class "disabled-btn"
+                        whenever in stock is true/false                        
+                        
+                        1. using the short-hand for v-bind => :style=""
+                        2. passing an object that includes our class name "disabled-btn"
+                        3. with the colon ":" and the boolean property "inStock" is false => !inStock
+                        
+                        > :class="{ 'disabled-btn': !inStock}"
+
+                        IMPORTANT NOTES:
+                        ****************
+                        1. Please pay attention to the way we invoke our custom class "disabled-btn"
+                        because of the kebab-case => we do need to write it within quotes: '
+                        'disabled-btn' otherwise we will receive an error :-(
+
+                        2. Notice the use of class for normal CSS and :class for Vue condition
+                        so the button bellow will be rendered as:
+                        <button class="button disabled-btn" disabled="">Add to Cart</button>
+                     -->
+                    <button class="button" @:click="addToCart" :disabled="!inStock"
+                        :class="{ 'disabled-btn': !inStock}">Add to Cart</button>
+
+                    <!-- 
+                        Finally: Other solution is using "Ternary Operators":
+                        The Remove from Cart should be also disabled when there is not item(s) to remove!
+                     -->
+                    <button class="button" @:click="removeFromCart" :class="[cart<=0 ? 'disabled-btn' : '']">
+                        Remove from Cart
+                    </button>
+                    <!--
+                        To recap: for testing this feature
+                        1. Open the Console window in the browser
+                        2. Type: mountedApp.inStock
+                        3. Assign it's value, or set it to true/false => mountedApp.inStock = true OR mountedApp.inStock = false 
+                    -->
+                </div>
+            </section>
+        </main>
+
+        <!-- aside on the right side of main content -->
+        <aside class="main-sidebar">
+            <dl>
+                <dt>
+                    Approachable:
+                </dt>
+                <dd>Builds on top of standard HTML, CSS and JavaScript with intuitive API and world-class documentation.
+                </dd>
+
+                <dt>
+                    Performant:
+                </dt>
+                <dd>Truly reactive, compiler-optimized rendering system that rarely requires manual optimization.
+                </dd>
+
+                <dt>
+                    Versatile:
+                </dt>
+                <dd>A rich, incrementally adoptable ecosystem that scales between a library and a full-featured
+                    framework.
+                </dd>
+            </dl>
+        </aside>
+
+        <footer>&copy; <span id="year"></span> - Vue.js Introduction Demo</footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="js/main6.js">
+    </script>
+
+    <!-- Another script for mounting the app to our HTML DOM -->
+    <script>
+        const mountedApp = app.mount('#app');
+    </script>
+
+    <body>
+
+</html>

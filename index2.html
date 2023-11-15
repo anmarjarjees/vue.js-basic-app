@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Vue.js Framework</h1>
+            <h2>Vue Demo Application</h2>
+        </header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </nav>
+
+        <main id="app" class="main-content">
+            <h1>{{ product }}</h1>
+            <section class="card">
+                <div>
+                    <!-- 
+                        Adding the image element 
+                        Dynamically Binding a vue option with html attribute 
+                        by using "v-bind" directive
+
+                        v-bind:src="image" <==> like {{ image }}
+
+                        OR Instead of => v-bind:src 
+                        We can just use the shorthand => :src 
+                    -->
+                    <img :src="image" alt="Casio Piano" class="img-centre">
+                    <!--
+                        besides :src="..."
+                        we can bind to "alt", "href", "class" attributes 
+
+                        Examples:
+                        <img :alt="description">
+                        <a :href="url">
+                        <div :class="isActive">
+                     -->
+                </div>
+                <!-- 
+                    using the "url" property of the "data" object from our Vue "app"
+                    with v-bind to bind it to the "href" attribute
+                 -->
+                <p>{{ product }} {{ description }}. To learn more visit <a :href="url" target="_blank">"Casio Privia
+                        PX-S7000"</a> Official page!</p>
+
+                <div class="product-status">
+
+                </div>
+            </section>
+        </main>
+
+        <!-- aside on the right side of main content -->
+        <aside class="main-sidebar">
+            <dl>
+                <dt>
+                    Approachable:
+                </dt>
+                <dd>Builds on top of standard HTML, CSS and JavaScript with intuitive API and world-class documentation.
+                </dd>
+
+                <dt>
+                    Performant:
+                </dt>
+                <dd>Truly reactive, compiler-optimized rendering system that rarely requires manual optimization.
+                </dd>
+
+                <dt>
+                    Versatile:
+                </dt>
+                <dd>A rich, incrementally adoptable ecosystem that scales between a library and a full-featured
+                    framework.
+                </dd>
+            </dl>
+        </aside>
+
+        <footer>&copy; <span id="year"></span> - Vue.js Introduction Demo</footer>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="js/main2.js">
+    </script>
+
+    <!-- Another script for mounting the app to our HTML DOM -->
+    <script>
+        const mountedApp = app.mount('#app');
+    </script>
+
+    <body>
+
+</html>
