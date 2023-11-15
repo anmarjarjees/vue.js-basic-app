@@ -1,5 +1,5 @@
 # vue.js-basic-app
-Quick Vue Application for understanding the fundamentals
+Quick Vue Application for understanding the fundamentals. For more detailed information about using the Vue framework step-by-step, refer to my repo ["vue.js-intro"](https://github.com/anmarjarjees/vue.js-intro) to start learning the essentials of Vue.
 
 # Folder Structure:
 - img folder for containing the products images
