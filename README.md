@@ -15,6 +15,7 @@ Importing the view inside the index.html file:
 To copy the CDN link, use this link ["Using Vue from CDN"](https://vuejs.org/guide/quick-start.html#using-vue-from-cdn)
 
 # Create Vue Application
+In our main JavaScript file:
 - Creating the vue app with "Vue.createApp({ })" and passing an object {}
 - "app" will be the instance for our Vue application that powers everything
 - Adding the "data()" option that returns data 
@@ -38,13 +39,16 @@ In the Console window (TAB), if you type mountedApp.anyDataValue='any value', th
 - Part4: List Rendering
 - Part5: Event Handling
 - Part6: Class & Style Binding
-### *NOTE: The other parts to be added later... Stay tuned :-)*
+- Part7: Computed Properties
+#### *NOTE: More topics to be added later if needed*
 
 # References, Resources, and Credits: 
+- [My main original repo about "Vue Introduction"](https://github.com/anmarjarjees/vue.js-intro)
 - [Vue Guide](https://vuejs.org/guide/introduction.html)
 - [Vue Tutorial](https://vuejs.org/tutorial/#step-1)
 - [Vue Quick Start](https://vuejs.org/guide/quick-start.html)
 - [Getting started with Vue](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/)
+- [W3Schools - Vue Tutorial](https://www.w3schools.com/vue/index.php)
 - [Vue Mastery Youtube Channel](https://www.youtube.com/c/VueMastery/about)
 
 

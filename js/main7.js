@@ -1,13 +1,15 @@
 // our JS code:
 document.getElementById("year").innerText = new Date().getFullYear();
 
-
 const app = Vue.createApp({
     data() {
         return {
             // 1. adding the text
             product: 'CASIO PXS7000 Stage Piano',
             description: 'comes with different options and colors',
+
+            // for this file index6, adding a new data property: brand
+            brand: "Casio Music",
 
             // 2. adding the image for v-bind
             image: 'img/casio-b.avif',
@@ -22,40 +24,40 @@ const app = Vue.createApp({
             // 4. adding a list:
             categories: ['DESIGN', 'SOUND & PLAYABILITY', 'EXPERIENCE', 'LINEUP'],
 
-            // more advanced: array of objects (each element is an object of 2 items)
             /*
-            Updating each object by adding an image path
+            Updating each object by adding a quantity,
+            so each individual item (based on its color) can have different quantity
+            > Black Color: #000 => 10 items available
+            > White Color: #fff => 10 items available
+            > Yellow Color => 0 item(s) available (Out of the stock)
             */
             options: [
                 {
-                    id: 1010, color: 'Black', image: "./img/casio-b.avif"
+                    id: 1010, color: '#000', image: "./img/casio-b.avif", quantity: 10
                 },
                 {
-                    id: 1020, color: 'White', image: "./img/casio-w.avif"
+                    id: 1020, color: '#fff', image: "./img/casio-w.avif", quantity: 6
                 },
                 {
-                    id: 1030, color: 'Yellow', image: "./img/casio-y.avif"
+                    id: 1030, color: '#e6b800', image: "./img/casio-y.avif", quantity: 0
                 }
             ],
 
             // adding cart option for number of items:
             cart: 0,
+
+            styles: {
+                color: 'darkgreen',
+                backgroundColor: 'lightyellow',
+                fontStyle: 'italic'
+            }
         }
     }, // end data()
-    /*
-    for adding method(s),
-    we can add a special property called "methods" as we did with "data()"
-    then we can list our methods 
-    Link: https://vuejs.org/guide/essentials/event-handling.html#method-handlers
-    */
     methods: {
         addToCart() {
             // referring to THIS cart within our data:
             this.cart++
         },
-        /*
-        Finally add the method updateImage()
-        */
         updateImage(styleImage) {
             this.image = styleImage;
         },
@@ -65,5 +67,14 @@ const app = Vue.createApp({
                 this.cart -= 1
             }
         }
-    } // end methods
-});
+    }, // end methods
+
+    // Adding the "computed" property for "computed properties":
+    computed: {
+        // Creating a computed property called "title":
+        title() {
+            // Computing the value of brand + space + product
+            return this.brand + ' ' + this.product
+        }
+    }
+}); // end Vue app

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <title>Class & Style Binding</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
             <section class="card">
                 <div>
                     <!-- 
-                        Final Task:
+                        Task Solution:
                         make the image grayed-out (lighter/little transparent)
                         when the item is out of stock:
                         
@@ -72,6 +72,8 @@
 
                     <h3 :style="styles">Available Colors</h3>
                     <!-- 
+                        Vue CSS Binding:
+                        ****************
                         @mouseover event to change image: different color
 
                         Modifications:
@@ -79,7 +81,8 @@
                         display the color itself by using "Style Binding"
                         displaying the color in circular shape using class "color-circle"
 
-                        1. Adding the :style attribute
+                        1. Adding the "v-bind:style" attribute
+                            > shorthand => :style
                         2. Bounding a style object to it
                         3. Adding the CSS property "backgroundColor" to the style object
                         IMPORTANT NOTES: 
@@ -88,6 +91,9 @@
                         4. using the same iteration variable "option" to access the color name/value
                         5. backgroundColor property will render the color name to a color
                         style="background-color: white"
+
+                        Link: https://vuejs.org/guide/essentials/class-and-style.html#class-and-style-bindings
+                        Link: https://www.w3schools.com/vue/vue_css-binding.php
                     -->
                     <div v-for="option in options" :key="option.id" @mouseover="updateImage(option.image)"
                         class="color-circle" :style="{ backgroundColor: option.color }">
@@ -101,55 +107,67 @@
 
                 <div class="buttons">
                     <!-- 
-                        Problem#1: 
-                        When setting the boolean property "inStock" to be false,
-                        which means no item(s) available to buy => this button should be disabled!
-                        
-                        Solution:
-                        adding the Vue Bind ":disabled" attribute when out product is not in stock
-                        so disable the button "Add to Cart" when the boolean property "inStock" is set to "false"
-                        > :disabled="!inStock"
+                    Boolean Attributes:
+                    *******************
 
-                        NOTE:
-                        !inStock => means when the value is "false" (not invert the value!)
+                    Problem#1: 
+                    When setting the boolean property "inStock" to be false,
+                    which means no item(s) available to buy => this button should be disabled!
+                    
+                    Solution:
+                    adding the Vue Bind ":disabled" attribute when out product is not in stock
+                    so disable the button "Add to Cart" when the boolean property "inStock" is set to "false"
+                    > :disabled="!inStock"
 
-                        Problem#2: 
-                        When the button is "disabled", user can still hover the mouse and it will highlight the button!
-                        we need to dim the button and remove the feature for highlighting in hovering if it's disabled!
+                    NOTE:
+                    !inStock => means when the value is "false" (not invert the value!)
 
-                        Solution:
-                        Using "Class Binding" to add/apply our custom class "disabled-btn" when disabled attribute is true
-                        Class Binding helps us to conditionally add/remove the class "disabled-btn"
-                        whenever in stock is true/false                        
-                        
-                        1. using the short-hand for v-bind => :style=""
-                        2. passing an object that includes our class name "disabled-btn"
-                        3. with the colon ":" and the boolean property "inStock" is false => !inStock
-                        
-                        > :class="{ 'disabled-btn': !inStock}"
+                    Problem#2: 
+                    When the button is "disabled", user can still hover the mouse and it will highlight the button!
+                    we need to dim the button and remove the feature for highlighting in hovering if it's disabled!
 
-                        IMPORTANT NOTES:
-                        ****************
-                        1. Please pay attention to the way we invoke our custom class "disabled-btn"
-                        because of the kebab-case => we do need to write it within quotes: '
-                        'disabled-btn' otherwise we will receive an error :-(
+                    Solution: "Class Binding"
+                    Using "v-bind:class" to assign a class to an HTML element in Vue.
+                    add/apply our custom class "disabled-btn" when disabled attribute is true
+                    Class Binding helps us to conditionally add/remove the class "disabled-btn"
+                    whenever in stock is true/false                        
+                    
+                    1. using the short-hand for v-bind:class => :class=""
+                    2. passing an object that includes our class name "disabled-btn"
+                    3. with the colon ":" and the boolean property "inStock" is false => !inStock
+                    
+                    > :class="{ 'disabled-btn': !inStock}"
 
-                        2. Notice the use of class for normal CSS and :class for Vue condition
-                        so the button bellow will be rendered as:
-                        <button class="button disabled-btn" disabled="">Add to Cart</button>
-                     -->
+                    IMPORTANT NOTES:
+                    ****************
+                    1. Please pay attention to the way we invoke our custom class "disabled-btn"
+                    because of the kebab-case => we do need to write it within quotes: '
+                    'disabled-btn' otherwise we will receive an error :-(
+
+                    2. Notice the use of class for normal CSS and :class for Vue condition
+                    so the button bellow will be rendered as:
+                    <button class="button disabled-btn" disabled="">Add to Cart</button>
+
+                    Link: https://vuejs.org/guide/essentials/template-syntax.html#boolean-attributes
+                    -->
                     <button class="button" @:click="addToCart" :disabled="!inStock"
                         :class="{ 'disabled-btn': !inStock}">Add to Cart</button>
+                    <!-- 
+                        To recap: 
+                        > :class="{ 'disabled-btn': !inStock}"
+                        - disabled-btn => class name
+                        - inStock => Vue boolean property for adding/not adding the class
+                    -->
 
                     <!-- 
-                        Finally: Other solution is using "Ternary Operators":
+                        Finally: Other solution is using inline "Ternary Operators":
                         The Remove from Cart should be also disabled when there is not item(s) to remove!
                      -->
                     <button class="button" @:click="removeFromCart" :class="[cart<=0 ? 'disabled-btn' : '']">
                         Remove from Cart
                     </button>
                     <!--
-                        To recap: for testing this feature
+                        To review: for testing this feature
                         1. Open the Console window in the browser
                         2. Type: mountedApp.inStock
                         3. Assign it's value, or set it to true/false => mountedApp.inStock = true OR mountedApp.inStock = false 
@@ -192,7 +210,7 @@
 
     <!-- Another script for mounting the app to our HTML DOM -->
     <script>
-        const mountedApp = app.mount('#app');
+        app.mount('#app');
     </script>
 
     <body>

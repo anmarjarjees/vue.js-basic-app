@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <title>Event Handling</title>
 </head>
 
 <body>
@@ -59,11 +59,14 @@
 
                     <h3>Available Colors</h3>
                     <!-- 
+                        Using Hover Event:
+                        NOTE => Review this code line after events:
+                        *******************************************
                         Modifying the code by adding hover event listener
                         using the directive @mouseover which is the Vue version of "hover"
                         calling a method to update the image => updateImage
                         passing the option.image to access the "image" property
-                        this "image" property contains the relative url value
+                        this "image" property contains the relative url value                   
                      -->
                     <div v-for="option in options" :key="option.id" @mouseover="updateImage(option.image)">
                         Color: {{ option.color }}
@@ -79,6 +82,8 @@
                  -->
                 <div class="buttons">
                     <!-- 
+                        Vue Events:
+                        *************
                         Adding an event => click event
                         Using a new Vue directive called "v-on"
                         with event name => :click
@@ -86,19 +91,34 @@
 
                         Instead of writing JS expression => v-on:click="cart += 1"
                         we can add a method (function) to be triggered on click event
+
+                        Link: https://vuejs.org/guide/essentials/event-handling.html#event-handling
+                        Link: https://vueschool.io/lessons/user-events-in-vue-3?friend=vuejs
+                        Link: https://www.w3schools.com/vue/vue_events.php
                      -->
 
-
-                    <!-- Try this first by adding to cart button code: JS expression -->
+                    <!-- 
+                    NOTE: 
+                    Try this first by adding to cart button code: JS expression 
+                    -->
                     <!-- 
                         <button class="button" v-on:click="cart += 1">Add to Cart</button> 
                     -->
 
                     <!-- 
-                        The better way with using a method "addToCart" 
-                        instead of using: v-on:click
-                        we can use the shorthand: @click
-                        this button is listening to click event
+                    NOTE:
+                    The logic for many event handlers can be lengthy or more complex,
+                    Inline code handlers will not be the right appropriate choice,
+                    That's why v-on can also accept the name or path of a component method to call  
+                    
+                    Then =>The better way with using a method "addToCart" 
+                        
+                    NOTE:
+                    instead of using the full syntax => v-on:click
+                    we can use the shorthand => @click
+                    this button is listening to click event
+                    
+                    Link: Link: https://vuejs.org/guide/essentials/event-handling.html#method-handler
                     -->
                     <button class="button" @:click="addToCart">Add to Cart</button>
                     <!--
@@ -107,7 +127,8 @@
                     -->
 
                     <!-- 
-                        Final task: adding a button for remove item(s) from the cart:
+                        Task Solution: 
+                        Adding a button for remove item(s) from the cart:
                      -->
                     <button class="button" @:click="removeFromCart">Remove from Cart</button>
                 </div>
@@ -149,7 +170,7 @@
 
     <!-- Another script for mounting the app to our HTML DOM -->
     <script>
-        const mountedApp = app.mount('#app');
+        app.mount('#app');
     </script>
 
     <body>

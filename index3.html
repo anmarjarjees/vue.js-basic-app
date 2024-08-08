@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <title>Conditional Rendering</title>
 </head>
 
 <body>
@@ -34,26 +34,40 @@
 
                 <div class="product-status">
                     <!-- 
+                        Vue v-if Directive:
+                        *******************
                         Using if-condition with the boolean data property "inStock"
 
                         Using "v-if" directive:
-                        - v-if => if the variable has the value of True => show the "v-if" element
-                        - v-if => if the variable has the value of True => show the "v-if" element
-                        - v-else (optional) for displaying alternative => which means False => show the "v-else" element
+                        - v-if => if the variable has the value of "true" => show the "v-if" element
+                        - v-else-if (optional)=> if the variable has the value of "true", show the "v-else-if" element
+                        - v-else (optional) for displaying alternative => which means "False" => show the "v-else" element
 
-                        only one value must be visible depending on the product if it's in stock our out of stock
+                        NOTE: 
+                        > "v-else-if" Must be used after v-if or another v-else-if.
+                        
+                        Link: https://vuejs.org/guide/essentials/conditional.html
+                        Link: https://www.w3schools.com/vue/vue_v-if.php
                      -->
                     <p>
                         Item Status:
+                        <!-- 
+                            only one value must be visible depending on the product if it's in stock our out of stock
+                        -->
                         <span v-if="inStock">In Stock</span>
                         <span v-else>Out of Stock</span>
                     </p>
 
                     <!-- 
+                        Vue v-show Directive:
+                        *********************
                         Notice that v-if directive will add/remove item/element from the DOM.
                         We can use v-show just to toggle the visibility of the element
                         by adding an inline style => display: none;
                         it can be used for better performance also
+
+                        Link: https://vuejs.org/guide/essentials/conditional.html#v-show
+                        Link: https://www.w3schools.com/vue/vue_v-show.php
                     -->
                     <p v-show="inStock">
                         The item is available for pickup from our main store or shipped for free to any
@@ -62,10 +76,18 @@
 
                     <!-- 
                         Adding additional layers of conditions:
-                        change the values of "inventory" in the main script for testing
+                        change the values of "inventory" in the main script for testing:
+
+                        if (inventory > 12) {
+                            > We have the three colors in our stock!
+                        } else if (inventory <=12 && inventory > 0)  {
+                            > Hurry up, this item is almost sold out!
+                        } else {
+                            > Out of Stock
+                        }
                      -->
-                    <p v-if="inventory > 10">We have the three colors in our stock!</p>
-                    <p v-else-if="inventory <=10 && inventory > 0">Hurry up, this item is almost sold out!</p>
+                    <p v-if="inventory > 12">We have the three colors in our stock!</p>
+                    <p v-else-if="inventory <=12 && inventory > 0">Hurry up, this item is almost sold out!</p>
                     <p v-else>Out of Stock</p>
 
                     <!-- combine two boolean properties -->
@@ -108,7 +130,7 @@
 
     <!-- Another script for mounting the app to our HTML DOM -->
     <script>
-        const mountedApp = app.mount('#app');
+        app.mount('#app');
     </script>
 
     <body>

@@ -352,6 +352,12 @@ figcaption {
     color: rgb(23, 49, 1);
 }
 
+span.tinyNote {
+    font-weight: bold;
+    font-size: small;
+    font-style: italic;
+}
+
 /* 
 Putting this rule in the global section
 footer style for preventing the floating issue 
@@ -439,6 +445,7 @@ to be used with the Vue CSS Class directive
 
 
 /* *************  End of Global Styles *************** */
+
 /* Second Step: Starting the media queries: */
 /* 1. For mobile (Small Screen) First */
 @media only screen and (max-width: 600px) {
@@ -494,18 +501,19 @@ to be used with the Vue CSS Class directive
     */
 
     /* We want all the three elements:
-    - the nav
-    - the main
-    - the aside
+    - the nav => 10%
+    - the main => 70%
+    - the aside => 20%
+    Total => 100%
     to be rendered/displayed/layout in one line (horizontally)
     */
     nav.main-nav {
-        width: 20%;
+        width: 10%;
         float: left;
     }
 
     main.main-content {
-        width: 60%;
+        width: 70%;
         float: left;
     }
 

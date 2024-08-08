@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <title>V-Bind</title>
 </head>
 
 <body>
@@ -25,16 +25,27 @@
         <main id="app" class="main-content">
             <h1>{{ product }}</h1>
             <section class="card">
+                <!-- 
+                Vue Built-in Directives:
+                Link: https://vuejs.org/api/built-in-directives.html#built-in-directives
+                -->
                 <div>
                     <!-- 
+                        Vue v-bind Directive:
+                        *********************
                         Adding the image element 
-                        Dynamically Binding a vue option with html attribute 
-                        by using "v-bind" directive
+                        Dynamically Binding a Vue app option/property with html attribute 
+                        by using "v-bind" directive => v-bind:
+
+                        Syntax:
+                        <anyElement v-bind:[attribute]="[Vue data]"></anyElement>
 
                         v-bind:src="image" <==> like {{ image }}
 
-                        OR Instead of => v-bind:src 
-                        We can just use the shorthand => :src 
+                        OR Instead of using "v-bind:src",
+                        we can just use the shorthand => :src 
+
+                        Link: https://www.w3schools.com/vue/vue_v-bind.php
                     -->
                     <img :src="image" alt="Casio Piano" class="img-centre">
                     <!--
@@ -42,12 +53,20 @@
                         we can bind to "alt", "href", "class" attributes 
 
                         Examples:
+                        <img v-bind:alt="description">
+                        OR using the shorthand:
                         <img :alt="description">
+
+                        <a v-bind:href="url">
+                        OR using the shorthand:
                         <a :href="url">
-                        <div :class="isActive">
+
+                        <div :class="className">
+                        <div :style="{ fontSize: size }">
                      -->
                 </div>
                 <!-- 
+                    Task Solution:
                     using the "url" property of the "data" object from our Vue "app"
                     with v-bind to bind it to the "href" attribute
                  -->
@@ -94,7 +113,7 @@
 
     <!-- Another script for mounting the app to our HTML DOM -->
     <script>
-        const mountedApp = app.mount('#app');
+        app.mount('#app');
     </script>
 
     <body>

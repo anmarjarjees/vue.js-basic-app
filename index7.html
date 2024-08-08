@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>List Rendering</title>
+    <title>Computed Properties</title>
 </head>
 
 <body>
@@ -23,11 +23,37 @@
         </nav>
 
         <main id="app" class="main-content">
-            <!-- Writing JS expression with {{ }} -->
-            <h1>{{ product }}</h1>
+            <!-- 
+                First: Try this
+                Combining "brand" data property with "product":
+                we combined two different properties within our HTML contents
+
+                Later, we use our Vue app to combine these two properties and return them to us
+                by using "Computed Property"
+
+                we will keep this one for learning demo
+             -->
+            <h1>{{ brand + ' ' + product }}</h1>
+
+            <!-- 
+                Vue Computed Properties:
+                ************************
+                adding another Heading (h2) to demonstrate the concept of "Computed Property"
+                adding the variable "title" that will be the name of the "Computed Property"
+                In Vue app we have the computed property "title()" inside the "computed:" category
+
+                {{ title }} = Computed Property => adding "brand" to "product"
+                > "Casio Music" + "CASIO PXS7000 Stage Piano"
+                > will display the calculated value of computed property "title()"
+                > value => Casio Music CASIO PXS7000 Stage Piano
+
+                Link: https://vuejs.org/guide/essentials/computed.html#computed-properties
+                Link: https://www.w3schools.com/vue/vue_computed-properties.php
+             -->
+            <h2>{{ title }} </h2>
             <section class="card">
                 <div>
-                    <img :src="image" alt="Casio Piano" class="img-centre">
+                    <img :src="image" alt="Casio Piano" class="img-centre" :class="{ 'grayed-out-img': !inStock}">
                 </div>
                 <p>{{ product }} {{ description }}. To learn more visit <a :href="url" target="_blank">"Casio Privia
                         PX-S7000"</a> Official page!</p>
@@ -52,37 +78,27 @@
                     <p v-if="inventory>0 && onSale">This item is currently on sale! Don't miss your chance</p>
 
                     <!-- Adding a list -->
-                    <h3>Explore the following</h3>
+                    <h3>Explore the following...</h3>
                     <ul>
-                        <!-- 
-                            Vue v-for Directive:
-                            ********************
-                            Displaying a list (array) values
-                            using "v-for" directive
-                            for-template => alias in listName
-                            > category as the alias
-                            > categories as our collection name
-
-                            Link: https://vuejs.org/api/built-in-directives.html#v-for
-                            Link: https://www.w3schools.com/vue/vue_v-for.php
-                        -->
                         <li v-for="category in categories">{{ category }}</li>
                     </ul>
 
-                    <h3>Available Colors</h3>
-                    <!-- 
-                        Adding div for colors 
-                        using the same v-for logic
-                        
-                        but this time giving a unique key for each element
-                        this unique code will be used later 
+                    <h3 :style="styles">Available Colors</h3>
 
-                        using v-bind with key => :key="option.id"
-                        this will give each DOM element a unique key
-                    -->
-                    <div v-for="option in options" :key="option.id">
-                        {{ option.color }} - <span class="tinyNote">Color ID: {{option.id}}</span>
+                    <div v-for="option in options" :key="option.id" @mouseover="updateImage(option.image)"
+                        class="color-circle" :style="{ backgroundColor: option.color }">
+                        <!-- Color: {{ option.color }} -->
                     </div>
+                </div>
+
+                <div class="cart">
+                    Cart({{ cart }})
+                </div>
+
+                <div class="buttons">
+                    <button class="button" @:click="removeFromCart" :class="[cart<=0 ? 'disabled-btn' : '']">
+                        Remove from Cart
+                    </button>
                 </div>
             </section>
         </main>
@@ -116,12 +132,12 @@
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-    <script src="js/main4.js">
+    <script src="js/main7.js">
     </script>
 
     <!-- Another script for mounting the app to our HTML DOM -->
     <script>
-        app.mount('#app');
+        const mountedApp = app.mount('#app');
     </script>
 
     <body>

@@ -24,13 +24,16 @@ const app = Vue.createApp({
             // more advanced: array of objects (each element is an object of 2 items)
             options: [
                 {
-                    id: 1010, color: 'Black'
+                    id: 1010,
+                    color: 'Black'
                 },
                 {
-                    id: 1020, color: 'White'
+                    id: 1020,
+                    color: 'White'
                 },
                 {
-                    id: 1030, color: 'Yellow'
+                    id: 1030,
+                    color: 'Yellow'
                 }
             ]
         }

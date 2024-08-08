@@ -48,11 +48,11 @@ const app = Vue.createApp({
             we can create an object the lives within our data() { } 
             attache all the needed styles to this object:
             */
-           styles: {
+            styles: {
                 color: 'darkgreen',
                 backgroundColor: 'lightyellow',
                 fontStyle: 'italic'
-           }
+            }
         }
     }, // end data()
     methods: {

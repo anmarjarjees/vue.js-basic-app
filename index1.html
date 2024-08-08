@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <title>Vue Intro</title>
 </head>
 
 <body>
@@ -21,59 +21,36 @@
                 <li><a href="#">Page 3</a></li>
             </ul>
         </nav>
-
+        <!-- 
+            ​Mounting the App:
+            *****************
+            This main HTML element will be connected to our Vue object
+            Link: https://vuejs.org/guide/essentials/application.html#mounting-the-app
+        -->
         <main id="app" class="main-content">
             <!-- 
                 Using JS expression => Double curly braces syntax {{ }} 
                 to allow us writing JavaScript statements with an HTML document
+                The "{{ }}" also called "Mustache Syntax"
+                Link: https://mustache.github.io/mustache.5.html
+                Link: https://github.com/mustache/mustache.github.com
+
+                calling the property named "product" from the "data"
             -->
             <h1>{{ product }}</h1>
             <section class="card">
                 <!-- 
-                    using the "url" property of the "data" object from our Vue "app"
-                    with v-bind to bind it to the "href" attribute
+                    NOTE:
+                    Below we are calling a property named "p1Content"
+                    which is not exist,
+                    Vue will show the error message in the Console window:
+                    Property "p1Content" was accessed during render 
+                    but is not defined on instance. at <App>
                  -->
-                <p>{{ product }} {{ description }}. To learn more visit <a :href="url" target="_blank">"Casio Privia
-                        PX-S7000"</a> Official page!</p>
+                <p>{{ p1Content }}</p>
 
-                <div class="product-status">
-                    <!-- 
-                        Using if-condition with the boolean data property "inStock"
-
-                        Using v-if directive:
-                        - v-if => True
-                        - v-else => False
-                     -->
-                    <p>
-                        Item Status:
-                        <span v-if="inStock">In Stock</span>
-                        <span v-else>Out of Stock</span>
-                    </p>
-
-                    <!-- 
-                        Notice that v-if directive will add/remove item/element from the DOM.
-                        We can use v-show just to toggle the visibility of the element
-                        by adding an inline style => display: none;
-                    -->
-                    <p v-show="inStock">
-                        <span>The item is available for pickup from our main store or shipped for free to any
-                            address!</span>
-                    </p>
-
-                    <p v-if="inventory>10">We have the three colors in our stock!</p>
-                    <p v-else-if="inventory<=10 && inventory>0">Hurry up, this item is almost sold out!</p>
-                    <p v-else>Out of Stock</p>
-
-                    <!-- combine two boolean properties -->
-                    <p v-if="inventory>0 && onSale">This item is currently on sale! Don't miss your chance</p>
-
-                    <!-- Adding a list -->
-                    <h3>Explore the following...</h3>
-                    <ul>
-                        <!-- using v-for directive: -->
-                        <li v-for="category in categories">{{ category }}</li>
-                    </ul>
-                </div>
+                <!-- Task Solution: -->
+                <p>{{ description }}</p>
             </section>
         </main>
 
@@ -105,27 +82,35 @@
     </div>
 
     <!-- 
-        Calling the Vue Framework first (the easiest way)
+        FIRST:
+        ******
+        Calling the Vue Framework first using CDN (the easiest way)
         Link: https://vuejs.org/guide/quick-start.html#using-vue-from-cdn
     -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-
     <!-- 
+        SECOND:
+        *******
         Calling our JS script file/ or Internal JS code:
         and also importing the Vue app "app" variable
      -->
     <script src="js/main1.js">
     </script>
 
-    <!-- Another script for mounting the app to our HTML DOM -->
+    <!-- 
+        Finally:
+        ********
+        Another script for mounting the app to our HTML DOM 
+    -->
     <script>
         /*
         Using mount() method for linking the app content with the HTML element
         mount() method accepts the DOM id selector "#app" 
         to attache the app to a location inside our DOM
+        Link: https://vuejs.org/guide/essentials/application.html#in-dom-root-component-template
         */
-        const mountedApp = app.mount('#app');
+        app.mount('#app');
     </script>
 
     <body>
